@@ -1,8 +1,12 @@
 //(function() {
     function Player(playerMark) {
         function addMark(row, column) {
-            Gameboard.gameboard[row][column] = this.playerMark;
-            Game.checkWin();
+            if (Gameboard.gameboard[row][column] == null) {
+                Gameboard.gameboard[row][column] = this.playerMark;
+                Game.checkWin();
+            } else {
+                console.log('this spot is already taken');
+            }
         };
         return {
             playerMark,
@@ -11,7 +15,7 @@
     }
 
     const Gameboard = {
-        gameboard: [[null, null, null], [null, null, null], [, null, null]],
+        gameboard: [[null, null, null], [null, null, null], [null, null, null]],
     }
 
     const Game = {
@@ -22,23 +26,39 @@
             for (let i=0; i<3; i++) {
                 if (board[0][i] != null) {
                     if (board[0][i] == board[1][i] && board[0][i] == board[2][i]) {
-                        console.log('true');
+                        if (board[0][i] == 0) {
+                            console.log("player1 wins!");
+                        } else {
+                            console.log("player2 wins!");
+                        }
                     }
                 }
                 if (board[i][0] != null) {
                     if (board[i][0] == board[i][1] && board[i][0] == board[i][2]) {
-                        console.log('true');
+                        if (board[i][0] == 0) {
+                            console.log("player1 wins!");
+                        } else {
+                            console.log("player2 wins!");
+                        }
                     }
                 }
             }
             if (board[0][0] != null) {
                 if (board[0][0] == board[1][1] && board[0][0] == board[2][2]) {
-                    console.log('true');
+                    if (board[0][0] == 0) {
+                        console.log("player1 wins!");
+                    } else {
+                        console.log("player2 wins!");
+                    }
                 }
             } 
             if (board[2][0] != null) {
                 if (board[2][0] == board[1][1] && board[2][0] == board[0][2]) {
-                    console.log('true');
+                    if (board[2][0] == 0) {
+                        console.log("player1 wins!");
+                    } else {
+                        console.log("player2 wins!");
+                    }
                 }
             }
         }
