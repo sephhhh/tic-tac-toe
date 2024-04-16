@@ -69,8 +69,12 @@
         checkTie: function() {
             let gameboardTie = Gameboard.gameboard.find(mark => mark == null);
              if (gameboardTie == undefined) {
-                this.tie = true;
+                if (this.player1.win == null && this.player2.win == null) {
+                    this.tie = true;
+                } else {
+                    console.log('game over')
+                }
             }
-        }
+        },
     }
 //})();
