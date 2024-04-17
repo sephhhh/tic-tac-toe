@@ -1,18 +1,9 @@
-//(function() {
+(function() {
     function Player(playerMark) {
         let win = null;
-        function addMark(row, column) {
-            if (Gameboard.gameboard[row][column] == null) {
-                Gameboard.gameboard[row][column] = this.playerMark;
-                Game.checkWin();
-                Game.checkTie();
-            } else {
-                console.log('this spot is already taken');
-            }
-        };
+
         return {
             playerMark,
-            addMark,
             win,
         }
     }
@@ -68,37 +59,108 @@
             }
         },
         checkTie: function() {
-            let gameboardTie = Gameboard.gameboard.find(mark => mark == null);
-             if (gameboardTie == undefined) {
+            let gameboardTie = Gameboard.gameboard.every(row => row.every(mark => mark !== null));
+             if (gameboardTie == true) {
                 if (this.player1.win == null && this.player2.win == null) {
                     this.tie = true;
-                } else {
-                    console.log('game over')
                 }
             }
         },
+        restart: function() {
+            Gameboard.gameboard = [[null, null, null], [null, null, null], [null, null, null]];
+            this.player1.win = null;
+            this.player2.win = null;
+            this.tie = null;
+        }
     };
 
     const Display = {
         counter: 0,
+        row: null,
+        column: null,
+        mark: null,
+        result: result = document.querySelector('.result'),
         click: function() {
             const buttons = document.querySelectorAll('button');
             buttons.forEach(button => {
                 button.addEventListener('click', () => {
                     if (button.textContent == "") {
                         if (this.counter % 2 == 0) {
+                            this.mark = 0;
                             button.textContent = "X";
-                            console.log(button.className)
+                            this.row = button.className.split(" ")[0];
+                            this.column = button.className.split(" ")[1];
+                            this.addToArray();
                         } else {
+                            this.mark = 1;
                             button.textContent = "O";
-                            console.log(button.className)
+                            this.row = button.className.split(" ")[0];
+                            this.column = button.className.split(" ")[1];
+                            this.addToArray();
                         }
                         this.counter++;
                     }
                 })
-            })
+            });
+        },
+        addToArray: function() {
+            switch (this.row) {
+                case "rowOne":
+                    if (this.column == "one") {
+                        Gameboard.gameboard[0][0] = this.mark;
+                    } else if (this.column == "two") {
+                        Gameboard.gameboard[0][1] = this.mark;
+                    } else {
+                        Gameboard.gameboard[0][2] = this.mark;
+                    }
+                    break;
+                case "rowTwo":
+                    if (this.column == "one") {
+                        Gameboard.gameboard[1][0] = this.mark;
+                    } else if (this.column == "two") {
+                        Gameboard.gameboard[1][1] = this.mark;
+                    } else {
+                        Gameboard.gameboard[1][2] = this.mark;
+                    }
+                    break;
+                case "rowThree":
+                    if (this.column == "one") {
+                        Gameboard.gameboard[2][0] = this.mark;
+                    } else if (this.column == "two") {
+                        Gameboard.gameboard[2][1] = this.mark;
+                    } else {
+                        Gameboard.gameboard[2][2] = this.mark;
+                    }
+                    break; 
+            };
+            Game.checkWin();
+            Game.checkTie();
+            this.displayWinner();
+        },
+        displayWinner: function() {
+            if (Game.player1.win == true) {
+                this.result.textContent = "Player1 Wins!";
+            } else if (Game.player2.win == true) {
+                this.result.textContent = "Player2 Wins!";
+            } else if (Game.tie == true) {
+                this.result.textContent = "Tie Game!"
+            }
+        },
+        restart: function() {
+            const restartButton = document.querySelector('.restart');
+            restartButton.addEventListener('click', () => {
+                Game.restart()
+                this.result.textContent = "";
+                const buttons = document.querySelectorAll('.box button');
+                buttons.forEach(button => {
+                    button.textContent = "";
+                });
+            });
+
         }
     };
     Display.click();
-//})();
+    Display.restart();
+})();
+
 

@@ -2,7 +2,7 @@
     border: 1px solid #000;
     width: 500px;
     height: 500px;
-    
+
     margin: 100px auto 0px auto;
 
     display: grid;
@@ -19,4 +19,26 @@
     border: 1px solid #000;
 
 }
+
+.result {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 35px;
+}
+
+.restart-container {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.restart {
+    margin: 0 auto;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+
+    font-size: 18px;
+}
+
+
 
