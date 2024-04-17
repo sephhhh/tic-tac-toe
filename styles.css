@@ -1,0 +1,22 @@
+.box {
+    border: 1px solid #000;
+    width: 500px;
+    height: 500px;
+    
+    margin: 100px auto 0px auto;
+
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.box .row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+}
+
+.row div {
+    border: 1px solid #000;
+
+}
+

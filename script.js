@@ -19,6 +19,7 @@
 
     const Gameboard = {
         gameboard: [[null, null, null], [null, null, null], [null, null, null]],
+
     }
 
     const Game = {
@@ -76,5 +77,28 @@
                 }
             }
         },
-    }
+    };
+
+    const Display = {
+        counter: 0,
+        click: function() {
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    if (button.textContent == "") {
+                        if (this.counter % 2 == 0) {
+                            button.textContent = "X";
+                            console.log(button.className)
+                        } else {
+                            button.textContent = "O";
+                            console.log(button.className)
+                        }
+                        this.counter++;
+                    }
+                })
+            })
+        }
+    };
+    Display.click();
 //})();
+
