@@ -132,11 +132,15 @@
             let names = document.querySelector('.names');
             submit.addEventListener('click', (event) => {
                 event.preventDefault();
-                this.player1Name = document.querySelector('[name="player1"]').value;
-                this.player2Name = document.querySelector('[name="player2"]').value;
-                theGame.style.visibility = "visible";
-                form.style.display = "none";
-                names.textContent = `${this.player1Name} vs ${this.player2Name}`
+                if (!this.invalidInput()) {
+                    this.player1Name = document.querySelector('[name="player1"]').value;
+                    this.player2Name = document.querySelector('[name="player2"]').value;
+                    theGame.style.visibility = "visible";
+                    form.style.display = "none";
+                    names.textContent = `${this.player1Name} vs ${this.player2Name}`;
+                } else {
+                    alert('Invalid input.')
+                }
             })
         },
         click: function() {
@@ -212,6 +216,13 @@
                     this.result.textContent = 'Tie Game';
                 }
             })
+        },
+        invalidInput: function() {
+            const name1 = document.querySelector('[name="player1"]').value;
+            const name2 = document.querySelector('[name="player2"]').value;
+            if (name1 == "" || name2 == "") {
+                return true;
+            };
         },
         restart: function() {
             const restartButton = document.querySelector('.restart');

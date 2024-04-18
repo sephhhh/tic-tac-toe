@@ -20,6 +20,17 @@ form .submit {
     border: 1px solid black;
 }
 
+form input:invalid {
+    border: 1px solid red;
+}
+
+form input {
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+
+
+
 .game {
     visibility: hidden;
 
