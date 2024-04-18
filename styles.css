@@ -94,7 +94,10 @@ form input {
 
 .row div {
     border: 1px solid #000;
+}
 
+.box .row button {
+    font-size: 100px;
 }
 
 .result {
