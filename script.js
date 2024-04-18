@@ -28,10 +28,12 @@
                             this.player1.count++;
                             this.player1.win = true;
                             this.disableAfterRound();
+                            Display.updateScore();
                         } else {
                             this.player2.win = true;
                             this.player2.count++;
                             this.disableAfterRound();
+                            Display.updateScore();
                         }
                     }
                 }
@@ -41,10 +43,12 @@
                             this.player1.win = true;
                             this.player1.count++;
                             this.disableAfterRound();
+                            Display.updateScore();
                         } else {
                             this.player2.win = true;
                             this.player2.count++;
                             this.disableAfterRound();
+                            Display.updateScore();
                         }
                     }
                 }
@@ -55,10 +59,12 @@
                         this.player1.win = true;
                         this.player1.count++;
                         this.disableAfterRound();
+                        Display.updateScore();
                     } else {
                         this.player2.win = true;
                         this.player2.count++;
                         this.disableAfterRound();
+                        Display.updateScore();
                     }
                 }
             } 
@@ -68,10 +74,12 @@
                         this.player1.win = true;
                         this.player1.count++;
                         this.disableAfterRound();
+                        Display.updateScore();
                     } else {
                         this.player2.win = true;
                         this.player2.count++;
                         this.disableAfterRound();
+                        Display.updateScore();
                     }
                 }
             }
@@ -81,6 +89,7 @@
              if (gameboardTie == true) {
                 if (this.player1.win == null && this.player2.win == null) {
                     this.tie = true;
+                    this.disableAfterRound();
                 }
             }
         },
@@ -185,6 +194,12 @@
             };
             Game.checkWin();
             Game.checkTie();
+        },
+        updateScore: function() {
+            const player1CurrentScore = document.querySelector('.player1result');
+            const player2CurrentScore = document.querySelector('.player2result');
+            player1CurrentScore.textContent = `${Game.player1.count}`;
+            player2CurrentScore.textContent = `${Game.player2.count}`;
         },
         displayWinner: function() {
             const resultButton = document.querySelector('.winner');

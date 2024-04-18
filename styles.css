@@ -37,12 +37,39 @@ form .submit {
     margin: 10px;
 }
 
+.outter-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.outter-box .player1result,
+.outter-box .player2result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #000;
+    font-size: 33px;
+    width: 65px;
+    height: 65px;
+}
+
+.outter-box .player1result {
+    margin-right: 40px;
+}
+
+.outter-box .player2result {
+    margin-left: 40px;
+}
+
 .box {
     border: 1px solid #000;
     width: 500px;
     height: 500px;
+    
 
-    margin: 30px auto 0px auto;
+    margin-top: 30px;
 
     display: grid;
     grid-template-rows: repeat(3, 1fr);
@@ -73,13 +100,20 @@ form .submit {
 }
 
 .restart,
-.play {
+.play,
+.winner {
     margin: 0 auto;
     width: 200px;
     height: 50px;
     border-radius: 10px;
 
     font-size: 18px;
+}
+
+.restart,
+.winner {
+    margin-top: 10px;
+    width: 150px;
 }
 
 
